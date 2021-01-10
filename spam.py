@@ -1,5 +1,4 @@
-import asyncio
-from asyncio import wait
+from asyncio import wait, sleep
 
 @ultroid_cmd(pattern="tspam")
 async def tmeme(e):
@@ -15,7 +14,7 @@ async def spammer(e):
         message = e.text
         counter = int(message[6:8])
         spam_message = str(e.text[8:])
-        await asyncio.wait([e.respond(spam_message) for i in range(counter)])
+        await wait([e.respond(spam_message) for i in range(counter)])
         await e.delete()
                                
 @ultroid_cmd(pattern=f"bigspam")
