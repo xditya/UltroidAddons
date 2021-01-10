@@ -25,15 +25,15 @@ async def figlet(event):
         cmd = None
         text = input_str
     else:
-        await eod(event, "Please add some text to figlet", time=10)
+        await eor(event, "Please add some text to figlet")
         return
     if cmd is not None:
         try:
             font = CMD_SET[cmd]
         except KeyError:
-            await eod(event, "Invalid selected font.", time=10)
+            await eor(event, "Invalid selected font.")
             return
         result = pyfiglet.figlet_format(text, font=font)
     else:
         result = pyfiglet.figlet_format(text)
-    await event.edit(f"‌‌‎`{result}`")
+    await eor(event, f"‌‌‎`{result}`")
