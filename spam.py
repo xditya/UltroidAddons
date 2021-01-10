@@ -1,8 +1,6 @@
 import asyncio
 from asyncio import wait
 
-from . import *
-
 @ultroid_cmd(pattern="tspam")
 async def tmeme(e):
     tspam = str(e.text[7:])
