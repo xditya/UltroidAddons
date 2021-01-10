@@ -3,7 +3,7 @@ from asyncio import wait
 
 from . import *
 
-@ultroid_cmd(pattern=f"^{x}tspam")
+@ultroid_cmd(pattern="tspam")
 async def tmeme(e):
     tspam = str(e.text[7:])
     message = tspam.replace(" ", "")
