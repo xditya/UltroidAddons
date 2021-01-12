@@ -6,6 +6,7 @@
 """
 
 import pyfiglet
+from . import *
 
 CMD_SET = {
     "slant": "slant",
