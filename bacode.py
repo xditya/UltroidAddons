@@ -14,7 +14,6 @@ import asyncio
 import os
 from datetime import datetime
 import barcode
-from barcode.writer import ImageWriter
 
 TMP_DOWNLOAD_DIRECTORY = "./cache"
 
