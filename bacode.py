@@ -17,7 +17,7 @@ import barcode
 
 TMP_DOWNLOAD_DIRECTORY = "./cache"
 
-@iltroid_cmd(pattern="barcode ?(.*)")
+@ultroid_cmd(pattern="barcode ?(.*)")
 async def _(event):
     x = await eor(event, "`Creating barcode...`")
     start = datetime.now()
