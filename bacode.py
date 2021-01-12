@@ -57,7 +57,7 @@ async def _(event):
         )
         os.remove(filename)
     except Exception as e:
-        await e.edit(str(e))
+        await x.edit(str(e))
         return
     end = datetime.now()
     ms = (end - start).seconds
