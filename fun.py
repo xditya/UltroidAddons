@@ -12,6 +12,7 @@ import os
 from pyjokes import get_joke
 import requests
 import json
+from . import *
 
 @ultroid_cmd(pattern="joke")
 async def _(ult): 
