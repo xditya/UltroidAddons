@@ -1,6 +1,15 @@
+"""
+✘ Commands Available
+
+• `{i}joke`
+    To get joke.
+
+• `{i}url <long url>`
+    To get a shorten link of long link.
+"""
+
 import os
-from pyjokes import get_joke #import from library
-from telethon import events
+from pyjokes import get_joke
 import requests
 import json
 
@@ -18,3 +27,4 @@ async def _(event):
     else:
         await eor(event, "something w3nt wrong. please try again later.")
 
+HELP.update({f"{__name__.split('.')[2]}": f"{__doc__.format(i=Var.HNDLR)}"})
