@@ -1,3 +1,10 @@
+"""
+✘ Commands Available
+
+• `{i}figlet <text>`
+    Make a text a figlet.
+"""
+
 import pyfiglet
 
 CMD_SET = {
@@ -37,3 +44,6 @@ async def figlet(event):
     else:
         result = pyfiglet.figlet_format(text)
     await eor(event, f"‌‌‎`{result}`")
+
+
+HELP.update({f"{__name__.split('.')[2]}": f"{__doc__.format(i=Var.HNDLR)}"})
