@@ -1,4 +1,5 @@
 from asyncio import wait, sleep
+from . import *
 
 @ultroid_cmd(pattern="tspam")
 async def tmeme(e):
