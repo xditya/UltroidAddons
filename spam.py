@@ -31,12 +31,13 @@ async def bigspam(e):
 @ultroid_cmd(pattern=f"picspam")
 async def tiny_pic_spam(e):
     if not e.text[0].isalpha() and e.text[0] not in ("/", "#", "@", "!"):
+        reply = await e.get_reply_message()
         message = e.text
         text = message.split()
         counter = int(text[1])
-        link = str(text[2])
+        media = await e.client.download_media(reply)
         for i in range(1, counter):
-            await e.client.send_file(e.chat_id, link)
+            await e.client.send_file(e.chat_id, media)
         await e.delete()
         
 @ultroid_cmd(pattern=f"delayspam (.*)")
