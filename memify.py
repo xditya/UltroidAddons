@@ -53,7 +53,7 @@ async def ultd(event):
     send = await event.client.send_file(
         event.chat_id, stick, force_document=False, reply_to=event.reply_to_msg_id
     )
-    await xx.delete()
+    await event.delete()
     os.remove(file)
     os.remove(stick)
 
@@ -196,7 +196,7 @@ async def ultd(event):
     send = await event.client.send_file(
         event.chat_id, pic, force_document=False, reply_to=event.reply_to_msg_id
         )
-    await xx.delete()
+    await event.delete()
     os.remove(file)
     os.remove(pic)
 
