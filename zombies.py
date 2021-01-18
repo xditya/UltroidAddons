@@ -1,9 +1,3 @@
-from asyncio import sleep
-from telethon.errors import ChatAdminRequiredError, UserAdminInvalidError
-from telethon.tl.functions.channels import EditBannedRequest
-from telethon.tl.types import ChatBannedRights
-from . import *
-
 """
 ✘ Commands Available
 • `{i}zombies`
@@ -12,6 +6,12 @@ from . import *
 • `{i}zombies clean`
     Remove the deleted accounts if the user is admin.
 """
+
+from asyncio import sleep
+from telethon.errors import ChatAdminRequiredError, UserAdminInvalidError
+from telethon.tl.functions.channels import EditBannedRequest
+from telethon.tl.types import ChatBannedRights
+from . import *
 
 BANNED_RIGHTS = ChatBannedRights(
     until_date=None,
