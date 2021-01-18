@@ -2,6 +2,16 @@ from asyncio import sleep
 from telethon.errors import ChatAdminRequiredError, UserAdminInvalidError
 from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights
+from . import *
+
+"""
+✘ Commands Available
+• `{i}zombies`
+    Gives the Number of Deleted Accounts.
+    
+• `{i}zombies clean`
+    Remove the deleted accounts if the user is admin.
+"""
 
 BANNED_RIGHTS = ChatBannedRights(
     until_date=None,
@@ -93,7 +103,6 @@ UNMUTE_RIGHTS = ChatBannedRights(until_date=None, send_messages=False)
 
 @ultroid_cmd('zombies ?(.*)')
 async def rm_deletedacc(show):
-    """ For .zombies command, list all the ghost/deleted/zombie accounts in a chat. """
     con = show.pattern_match.group(1).lower()
     del_u = 0
     del_status = "`No deleted accounts found, Group is clean`"
@@ -152,3 +161,5 @@ async def rm_deletedacc(show):
     await ehh.edit(del_status)
     await sleep(2)
     await show.delete()
+    
+HELP.update({f"{__name__.split('.')[2]}": f"{__doc__.format(i=Var.HNDLR)}"})
