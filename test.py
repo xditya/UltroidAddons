@@ -6,7 +6,7 @@ import io
 import speedtest
 from . import *
 
-@ultroid_cmd(pattern="test ?(.*)"))
+@ultroid_cmd(pattern="test ?(.*)")
 async def _(event):
     if event.fwd_from:
         return
