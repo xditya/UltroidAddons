@@ -5,7 +5,7 @@ import sys
 import random
 from . import *
 
-@ultroid_cmd(pattern="hack"))
+@ultroid_cmd(pattern="hack")
 async def _(event):
     if event.fwd_from:
         return
