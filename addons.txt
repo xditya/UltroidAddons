@@ -1,4 +1,4 @@
 pyfiglet
 pyjokes
-barcode
+orangefoxapi==2.1.2
 speedtest
