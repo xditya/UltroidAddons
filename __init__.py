@@ -1,1 +1,1 @@
-from ..plugins.__init__ import *
+from ..plugins import *
