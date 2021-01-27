@@ -19,7 +19,7 @@ async def _(event):
         as_document = True
     elif input_str == "text":
         as_text = True
-    await eor(event, "`Calculating ur Ultroid Server Speed. Please wait!`")
+    xx = await eor(event, "`Calculating ur Ultroid Server Speed. Please wait!`")
     start = datetime.now()
     s = speedtest.Speedtest()
     s.get_best_server()
@@ -41,7 +41,7 @@ async def _(event):
         response = s.results.share()
         speedtest_image = response
         if as_text:
-            await event.edit("""`Ultroid Server Speed in {} sec`
+            await xx.edit("""`Ultroid Server Speed in {} sec`
 
 `Download: {}`
 `Upload: {}`
@@ -59,7 +59,7 @@ async def _(event):
             )
             await event.delete()
     except Exception as exc:#dc
-        await event.edit("""**SpeedTest** completed in {} seconds
+        await xx.edit("""**SpeedTest** completed in {} seconds
 Download: {}
 Upload: {}
 Ping: {}
