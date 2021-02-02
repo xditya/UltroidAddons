@@ -1,10 +1,11 @@
-
+# Ported From DarkCobra Originally By UNIBORG
 
 from telethon import events
 from datetime import datetime
 import io
 import speedtest
 from . import *
+from userbot import CMD_HELP
 
 @ultroid_cmd(pattern="test ?(.*)")
 async def _(event):
@@ -84,3 +85,4 @@ def convert_from_bytes(size):
         n += 1
     return f"{round(size, 2)} {units[n]}"
 
+CMD_HELP.update({"test": ".test\nCheck your userbot heroku server speed powered by speedtest.net"})
