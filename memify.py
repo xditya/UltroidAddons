@@ -1,3 +1,6 @@
+# Ported Nd Modified For Ultroid
+# Ported From DarkCobra (Modified by @ProgrammingError)
+#
 # Ultroid - UserBot
 # Copyright (C) 2020 TeamUltroid
 #
@@ -17,7 +20,6 @@
 
 import cv2
 import os, io, re ,textwrap
-import lottie
 from PIL import Image, ImageDraw, ImageEnhance, ImageFont, ImageOps
 from . import *
 
