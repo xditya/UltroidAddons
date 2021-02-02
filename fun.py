@@ -10,17 +10,17 @@
 • `{i}decide`
     Decide something.
 
-• `{i}gif`
-    .gif <your query>, sends the desired gif related to your query(not always).
+• `{i}gif <your query>`
+    Sends the desired gif related to your query.
 
-• `{i}vtog`
-    .vtog <in reply to a video>, converts any video to a gif with low time limit(takes time).
+• `{i}vtog <in reply to a video>`
+    Converts any video to a gif with low time limit(takes time).
 
-• `{i}xoxo`
-    Opens tic tac toe game only where using inline mode is allowed.
+• `{i}xo`
+    Opens tic tac game only where using inline mode is allowed.
 
-• `{i}gps`
-    .gps <name of place> , shows the desired place in the map(works where inline is allowed).
+• `{i}gps <name of place>`
+    Shows the desired place in the map.
 
 """
 
@@ -82,14 +82,15 @@ async def gifs(ult):
 @ultroid_cmd(pattern="vtog$")
 async def vtog(ult):
     reply = await ult.get_reply_message()
+    xx = eor(ult, "`Processing Takes Time...`")
     lol = await ultroid_bot.download_media(reply.media)
     file_name = "ultroid.gif"
     clip = (m.VideoFileClip(lol).subclip((4.3),(5.8)).resize(0.3))
     clip.write_gif(file_name)
-    await ultroid_bot.send_file(ult.chat_id, file_name) 
+    await ultroid_bot.send_file(ult.chat_id, file_name, reply_to=ult.reply_to_msg_id) 
     os.remove(lol)
     os.remove(file_name)
-    await ult.delete()
+    await xx.delete()
 
 
 @ultroid_cmd(pattern="xo$")
