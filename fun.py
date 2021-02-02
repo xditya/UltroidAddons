@@ -22,8 +22,9 @@
 • `{i}xoxo`
     Opens tic tac toe game only where using inline mode is allowed.
 
+• `{i}gps`
+    .gps <name of place> , shows the desired place in the map(works where inline is allowed).
 
-    
 """
 
 import os, re, random, sys
@@ -179,6 +180,23 @@ async def nope(doit):
                             silent=True if doit.is_reply else False,
                             hide_via=True)
     await doit.delete()
+
+@ultroid_cmd(pattern="gps")
+async def nope(doit):
+    ok = doit.pattern_match.group(1)
+    if not ok:
+        if doit.is_reply:
+            what = (await doit.get_reply_message()).message
+        
+            return
+    mappy = await ultroid_bot.inline_query(
+        "openmap_bot", f"{(deEmojify(ok))}")
+    await mappy[0].click(doit.chat_id,
+                            reply_to=doit.reply_to_msg_id,
+                            silent=True if doit.is_reply else False,
+                            hide_via=True)
+    await doit.delete()
+
 
     
 HELP.update({f"{__name__.split('.')[2]}": f"{__doc__.format(i=Var.HNDLR)}"})
