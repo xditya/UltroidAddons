@@ -1,14 +1,24 @@
+# Ported From @THE_BL_ACK_HAT
+#
+# Ultroid - UserBot
+#
+# This file is a part of < https://github.com/TeamUltroid/Ultroid/ >
+# PLease read the GNU Affero General Public License in
+# <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
+
+
 from pokedex import pokedex as badhiya
 import os
 import shutil
 from re import findall
+from userbot.utils import admin_cmd
 import requests
+from userbot import CMD_HELP
 
-ultroid_cmd(pattern="pokedex")
-async def pokedex(ult):
-
-    await ult.edit("`Booting up the pokedex.......`")
-    pokemon = ult.pattern_match.group(1)
+@borg.on(admin_cmd(pattern="pokedex ?(.*)"))
+async def pokedex(event):
+    await event.edit("`Booting up the pokedex.......`")
+    pokemon = event.pattern_match.group(1)
     move = requests.get(f'https://pokeapi.co/api/v2/pokemon/{pokemon}')
     rw = f"https://some-random-api.ml/pokedex?pokemon={pokemon}"
     w=requests.get(f"https://api.pokemontcg.io/v1/cards?name={pokemon}")
@@ -52,6 +62,7 @@ async def pokedex(ult):
     pname = poli.get_pokemon_by_name(pokemon)
     pokemon = pname[0]
     lst=pokemon.get("sprite")
+
     cap=f'''
 
 **NAME** : `{name}`
@@ -75,14 +86,26 @@ async def pokedex(ult):
 **Total**   : `{Stats['total']}`            `(7){move7}`
 **DESCRIPTION** : `{description}`
   '''
-    await ultroid_bot.send_file(event.chat_id, lst, caption=cap)
-    await ult.delete()
-@ultroid_cmd(pattern="poke card")
-async def pokedex(ult):
+    await borg.send_file(event.chat_id, lst, caption=cap)
+    await event.delete()
+
+@borg.on(admin_cmd(pattern="pokecard ?(.*)"))
+async def pokedex(event):
     pokename=event.pattern_match.group(1)
     rw = f"https://api.pokemontcg.io/v1/cards?name={pokename}"
     r = requests.get(rw)
     a=r.json()
     o=a['cards'][0]['imageUrlHiRes']
-    await ult.send_file(await ult.get_input_entity(event.chat_id), o)
-    await ult.delete()
+    await event.client.send_file(await event.client.get_input_entity(event.chat_id), o)
+    await event.delete()
+
+CMD_HELP.update(
+    {
+        "pkedex": "`Pokedex`\
+        \n`.pokedex [pokemon name]`\
+        \nsFetchs Pokemon details \
+        \n\n*`.pokecard [pokemon name]`\
+        \n**Send Pokemon Card \
+        "
+    }
+)
