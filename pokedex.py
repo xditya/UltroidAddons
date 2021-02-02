@@ -1,4 +1,4 @@
-# Ported From @THE_BL_ACK_HAT
+# Creator - @THE_BL_ACK_HAT @Shivam_Patel
 #
 # Ultroid - UserBot
 #
@@ -17,7 +17,7 @@ from userbot import CMD_HELP
 
 @borg.on(admin_cmd(pattern="pokedex ?(.*)"))
 async def pokedex(event):
-    await event.edit("`Booting up the pokedex.......`")
+    xx = await eor(event, "`Booting up the pokedex.......`")
     pokemon = event.pattern_match.group(1)
     move = requests.get(f'https://pokeapi.co/api/v2/pokemon/{pokemon}')
     rw = f"https://some-random-api.ml/pokedex?pokemon={pokemon}"
@@ -87,7 +87,7 @@ async def pokedex(event):
 **DESCRIPTION** : `{description}`
   '''
     await borg.send_file(event.chat_id, lst, caption=cap)
-    await event.delete()
+    await xx.delete()
 
 @borg.on(admin_cmd(pattern="pokecard ?(.*)"))
 async def pokedex(event):
@@ -101,7 +101,7 @@ async def pokedex(event):
 
 CMD_HELP.update(
     {
-        "pkedex": "`Pokedex`\
+        "pokedex": "`Pokedex`\
         \n`.pokedex [pokemon name]`\
         \nsFetchs Pokemon details \
         \n\n*`.pokecard [pokemon name]`\
