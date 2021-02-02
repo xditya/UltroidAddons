@@ -1,5 +1,15 @@
+# (c) Shrimadhav U.K
+# aka Spechide
+#
+# Ported for Ultroid - UserBot
+#
+# This file is a part of < https://github.com/TeamUltroid/Ultroid/ >
+# PLease read the GNU Affero General Public License in
+# <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
+
 import asyncio
 from . import *
+from support import CMD_HELP
 
 @ultroid_cmd(pattern="type ?(.*)")
 async def _(event):
@@ -32,3 +42,10 @@ async def _(event):
             logger.warn(str(e))
             pass
         await asyncio.sleep(0.4)
+
+ CMD_HELP.update(
+    {
+        "type":"show typing view"
+        "\nUsage: Edits the Message and shows like someone is typing"
+    }
+)
