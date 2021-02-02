@@ -1,9 +1,16 @@
+# Ported From DarkCobra , Originally By Uniborg
+# Ultroid - UserBot
+#
+# This file is a part of < https://github.com/TeamUltroid/Ultroid/ >
+# PLease read the GNU Affero General Public License in
+# <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
 
 import html
 from telethon.tl import functions
 from telethon.tl.functions.users import GetFullUserRequest
 from telethon.tl.types import MessageEntityMentionName
 from . import *
+from userbot import CMD_HELP
 
 @ultroid_cmd(pattern="clone ?(.*)")
 async def _(event):
@@ -56,7 +63,7 @@ async def _(event):
     await ultroid_bot(functions.account.UpdateProfileRequest(about=bio))
     await ultroid_bot(functions.account.UpdateProfileRequest(first_name=name))
     await ultroid_bot(functions.account.UpdateProfileRequest(last_name=ok))
-    await event.edit("succesfully reverted to your account back")
+    await eor(event, "succesfully reverted to your account back")
     
 
 async def get_full_user(event):
@@ -112,4 +119,10 @@ async def get_full_user(event):
             except Exception as e:
                 return None, e
 
-
+CMD_HELP.update({
+    "clone":
+    ".clone <username/reply>\
+\nUsage: steals others profile including dp, name.\
+\n\n.revert\
+\nUsage: To back to your profile but it'll show ALIVE_NAME instead of your current name and DEFAULT_BIO instead of your current bio\
+"})
