@@ -308,3 +308,5 @@ async def draw_meme(image_path, msg):
     pics = "ultt.png"
     img.save(pics, "png")
     return pics
+
+HELP.update({f"{__name__.split('.')[2]}": f"{__doc__.format(i=Var.HNDLR)}"})
