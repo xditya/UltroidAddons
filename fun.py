@@ -16,6 +16,9 @@
 • `{i}vtog`
     .vtog <in reply to a video>, converts any video to a gif with low time limit(takes time).
 
+• `{i}g2t`
+    .g2t text|font|size|color|coordinate(x);coordinate(y)|loop|duration
+
 • `{i}xoxo`
     Opens tic tac toe game only where using inline mode is allowed.
 
@@ -29,7 +32,7 @@ import requests
 import json
 from . import *
 from telethon.errors import ChatSendMediaForbiddenError
-from PIL import Image 
+from PIL import Image, ImageDraw, ImageFont
 import moviepy.editor as m
 
 @ultroid_cmd(pattern="joke")
@@ -87,6 +90,63 @@ async def vtog(ult):
             os.remove(files)        
     ultroied = await ult.delete()
 
+
+@ultroid_cmd(pattern="g2t")
+global hawkmoth
+hawkmoth="I0Rvbm90IEthbmcgTUFERSBCWSBAVEhFX0JMX0FDS19IQVQgTU9ESUZJRUQgQlkgU2gxdmFtICNUZWFtIERDIA=="
+async def lol(ult):
+    await ult.delete()
+    if not os.path.isdir("./imglol"):
+        os.makedirs("./imglol")
+    rasta = './imglol'
+    reply = await ult.get_reply_message()
+    me= await ultroid_bot.download_media(reply.media, rasta)
+    lol = ult.text
+    hui, font,size,color,align,loop,duration= lol[9:].split('|')
+    loltext = hui
+
+    
+    
+    x,y=align.split(";")
+    
+    size=int(size)
+
+
+    def adi(text):
+        img = Image.open(me)
+        fonts = ImageFont.truetype(r"Fonts/{}".format(font),size)
+        draw = ImageDraw.Draw(img)
+        draw.text(((int(x), int(y))), text,fill=(color),font=fonts )
+        
+        return img
+
+    # Create the frames
+    frames = []
+
+    def ruil(text):
+        global c
+        for i in range(len(text)+1):
+            new_frame = adi(text[:i])
+            frames.append(new_frame)
+        c = 0
+
+    all_text = f"{loltext}"
+    ruil(all_text)
+
+
+    # Save into a GIF file that loops forever
+    frames[0].save('catnoiar.gif', format='GIF',
+                   append_images=frames[1:], save_all=True, duration=int(duration), loop=int(loop))
+    ukanger = "ultrooiidd.gif" 
+    await ultroid_bot.send_file(event.chat_id, ukanger)
+global miracul
+
+if hawkmoth!=miracul :
+		
+
+
+           print("GREAT kanger Here")
+           
 UNSAFE_CHARACTERS = re.compile(
     "["
     "\U0001F1E0-\U0001F1FF"  # flags (iOS)
