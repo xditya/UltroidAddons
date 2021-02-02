@@ -10,6 +10,12 @@
 • `{i}decide`
     Decide something.
 
+• `{i}gif`
+    .gif <your query>, sends the desired gif related to your query(not always).
+
+• `{i}vtog`
+    .vtog <in reply to a video>, converts any video to a gif with low time limit(takes time).
+
 • `{i}xoxo`
     Opens tic tac toe game only where using inline mode is allowed.
 
@@ -17,12 +23,14 @@
     
 """
 
-import os, re, random
+import os, re, random, sys
 from pyjokes import get_joke
 import requests
 import json
 from . import *
 from telethon.errors import ChatSendMediaForbiddenError
+from PIL import Image 
+import moviepy.editor as m
 
 @ultroid_cmd(pattern="joke")
 async def _(ult): 
@@ -49,6 +57,35 @@ async def _(event):
         event.chat_id, r["answer"], reply_to=message_id, file=r["image"])
     except ChatSendMediaForbiddenError:
         await eor(event,r['answer'])
+
+if not os.path.isdir("./ultpath/"):
+    os.makedirs("./ultpath/")
+
+
+@ultroid_cmd(pattern="gif")
+async def gifs(ult):
+    get = ult.pattern_match.group(1)
+    if not get:
+       await ult.edit("`.gif <query>`")
+       return
+    gifs = await ultroid_bot.inline_query("gif", f"{get}")
+    await gifs[0].click(ult.chat.id, reply_to=ult.reply_to_msg_id, silent=True ,hide_via=True)
+    await ult.delete()    
+
+@ultroid_cmd(pattern="vtog")
+async def vtog(ult):
+    path = "ultroidd"
+    reply = await ult.get_reply_message()
+    lol = await ultroid_bot.download_media(reply.media, path)
+    file_name = "ultroid.gif"
+    clip = (m.VideoFileClip(lol).subclip((4.3),(5.8)).resize(0.3))
+    clip.write_gif(file_name)
+    hehe = path + "/" + file_name
+    await ultroid_bot.send_file(ult.chat_id, file_name)
+    for files in (hehe, lol):
+        if files and os.path.exists(files):
+            os.remove(files)        
+    ultroied = await ult.delete()
 
 UNSAFE_CHARACTERS = re.compile(
     "["
