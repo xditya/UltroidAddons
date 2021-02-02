@@ -9,6 +9,7 @@
 
 import asyncio
 from . import *
+from support import CMD_HELP
 
 @ultroid_cmd(pattern="type ?(.*)")
 async def _(event):
@@ -41,3 +42,10 @@ async def _(event):
             logger.warn(str(e))
             pass
         await asyncio.sleep(0.4)
+
+ CMD_HELP.update(
+    {
+        "type":"show typing view"
+        "\nUsage: Edits the Message and shows like someone is typing"
+    }
+)
