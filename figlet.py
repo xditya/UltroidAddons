@@ -47,4 +47,4 @@ async def figlet(event):
     await eor(event, f"‌‌‎`{result}`")
 
 
-HELP.update({f"{__name__.split('.')[2]}": f"{__doc__.format(i=Var.HNDLR)}"})
+HELP.update({f"{__name__.split('.')[1]}": f"{__doc__.format(i=Var.HNDLR)}"})
