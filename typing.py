@@ -43,7 +43,7 @@ async def _(event):
             pass
         await asyncio.sleep(0.4)
 
- CMD_HELP.update(
+CMD_HELP.update(
     {
         "type":"show typing view"
         "\nUsage: Edits the Message and shows like someone is typing"
