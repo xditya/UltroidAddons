@@ -103,4 +103,4 @@ async def rm_deletedacc(show):
     await sleep(2)
     await show.delete()
     
-HELP.update({f"{__name__.split('.')[2]}": f"{__doc__.format(i=Var.HNDLR)}"})
+HELP.update({f"{__name__.split('.')[1]}": f"{__doc__.format(i=Var.HNDLR)}"})
