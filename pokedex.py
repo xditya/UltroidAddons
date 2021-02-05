@@ -27,16 +27,20 @@ async def pokedex(event):
     rw = f"https://some-random-api.ml/pokedex?pokemon={pokemon}"
     w=requests.get(f"https://api.pokemontcg.io/v1/cards?name={pokemon}")
     lol=w.json()
-    weaknesses=lol['cards'][0]['weaknesses'][0]['type']
     r = requests.get(rw)
     a=r.json()
-    name=a['name']
+    try:
+        name=a['name']
+    except:
+        await eor(event, "`Be sure To give correct Name`")
+        return
     typ=a['type']
     species=a['species']
     abilities=a['abilities']
     height=a['height']
     weight=a['weight']
     esatge=r.json()['family']['evolutionStage']
+    weaknesses=lol['cards'][0]['weaknesses'][0]['type']
     l=r.json()['family']['evolutionLine']
     if not l:
         line = 'None'
@@ -44,7 +48,7 @@ async def pokedex(event):
         line=', '.join(map(str, l))
     gen=a['generation']
     try:    move1=move.json()["moves"][0]['move']['name']
-    except IndexError: pass
+    except IndexError: move1=None
     try:    move2=move.json()["moves"][1]['move']['name']
     except IndexError: move2=None
     try:    move3=move.json()["moves"][2]['move']['name']
@@ -102,9 +106,13 @@ async def pokedex(event):
     rw = f"https://api.pokemontcg.io/v1/cards?name={pokename}"
     r = requests.get(rw)
     a=r.json()
-    o=a['cards'][0]['imageUrlHiRes']
-    await event.client.send_file(await event.client.get_input_entity(event.chat_id), o)
-    await event.delete()
+    try:
+        o=a['cards'][0]['imageUrlHiRes']
+        await event.client.send_file(await event.client.get_input_entity(event.chat_id), o)
+        await event.delete()
+    except:
+        await eor(event, "`Be sure To give correct Name`")
+        return
 
 CMD_HELP.update(
     {
