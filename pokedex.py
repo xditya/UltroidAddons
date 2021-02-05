@@ -14,11 +14,15 @@ from re import findall
 from userbot.utils import admin_cmd
 import requests
 from userbot import CMD_HELP
+from . import *
 
-@borg.on(admin_cmd(pattern="pokedex ?(.*)"))
+@ultroid_cmd(pattern="pokedex ?(.*)")
 async def pokedex(event):
-    xx = await eor(event, "`Booting up the pokedex.......`")
     pokemon = event.pattern_match.group(1)
+    if not pokemon:
+        await eor(event, "`Give a Pokemon Name`")
+        return
+    xx = await eor(event, "`Booting up the pokedex.......`")
     move = requests.get(f'https://pokeapi.co/api/v2/pokemon/{pokemon}')
     rw = f"https://some-random-api.ml/pokedex?pokemon={pokemon}"
     w=requests.get(f"https://api.pokemontcg.io/v1/cards?name={pokemon}")
@@ -86,12 +90,15 @@ async def pokedex(event):
 **Total**   : `{Stats['total']}`            `(7){move7}`
 **DESCRIPTION** : `{description}`
   '''
-    await borg.send_file(event.chat_id, lst, caption=cap)
+    await ultroid_bot.send_file(event.chat_id, lst, caption=cap)
     await xx.delete()
 
-@borg.on(admin_cmd(pattern="pokecard ?(.*)"))
+@ultroid_cmd(pattern="pokecard ?(.*)")
 async def pokedex(event):
     pokename=event.pattern_match.group(1)
+    if not pokename:
+        await eor(event, "`Give A Pokemon name`")
+        return
     rw = f"https://api.pokemontcg.io/v1/cards?name={pokename}"
     r = requests.get(rw)
     a=r.json()
