@@ -19,6 +19,9 @@
 • `{i}xo`
     Opens tic tac game only where using inline mode is allowed.
 
+• `{i}wordi`
+    Opens word game only where using inline mode is allowed.
+
 • `{i}gps <name of place>`
     Shows the desired place in the map.
 
@@ -97,6 +100,12 @@ async def vtog(ult):
 async def xo(ult):
     xox = await ultroid_bot.inline_query("xobot", "play")
     await xox[0].click(ult.chat.id, reply_to=ult.reply_to_msg_id, silent=True ,hide_via=True)
+    await ult.delete()
+
+@ultroid_cmd(pattern="wordi$")
+async def word(ult):
+    game = await ultroid_bot.inline_query("wordibot", "play")
+    await game[0].click(ult.chat.id, reply_to=ult.reply_to_msg_id, silent=True ,hide_via=True)
     await ult.delete()
 
 
