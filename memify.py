@@ -35,7 +35,7 @@ async def ultd(event):
         xx = await eor(event, "`Give me something text to write 😑`")
         return
     ultt = await ureply.download_media()
-    if ultt.endswith((".tgs", ".webp")):
+    if ultt.endswith((".tgs")):
         xx = await eor(event, "`Ooo Animated Sticker 👀...`")
         cmd = ["lottie_convert.py", ultt, "ult.png"]
         file = "ult.png"
@@ -55,7 +55,7 @@ async def ultd(event):
     send = await event.client.send_file(
         event.chat_id, stick, force_document=False, reply_to=event.reply_to_msg_id
     )
-    await event.delete()
+    await xx.delete()
     os.remove(file)
     os.remove(stick)
 
@@ -178,7 +178,7 @@ async def ultd(event):
         xx = await eor(event, "`Give me something text to write 😑`")
         return
     ultt = await ureply.download_media()
-    if ultt.endswith((".tgs", ".webp")):
+    if ultt.endswith((".tgs")):
         xx = await eor(event, "`Ooo Animated Sticker 👀...`")
         cmd = ["lottie_convert.py", ultt, "ult.png"]
         file = "ult.png"
@@ -198,7 +198,7 @@ async def ultd(event):
     send = await event.client.send_file(
         event.chat_id, pic, force_document=False, reply_to=event.reply_to_msg_id
         )
-    await event.delete()
+    await xx.delete()
     os.remove(file)
     os.remove(pic)
 
