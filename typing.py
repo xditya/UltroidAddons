@@ -7,9 +7,15 @@
 # PLease read the GNU Affero General Public License in
 # <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
 
+"""
+✘ Commands Available -
+
+• `{i}type <msg>`
+    Edits the Message and shows like someone is typing.
+"""
+
 import asyncio
 from . import *
-from support import CMD_HELP
 
 @ultroid_cmd(pattern="type ?(.*)")
 async def _(event):
@@ -43,9 +49,5 @@ async def _(event):
             pass
         await asyncio.sleep(0.4)
 
-CMD_HELP.update(
-    {
-        "type":"show typing view"
-        "\nUsage: Edits the Message and shows like someone is typing"
-    }
-)
+
+HELP.update({f"{__name__.split('.')[1]}": f"{__doc__.format(i=Var.HNDLR)}"})
