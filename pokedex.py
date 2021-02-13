@@ -6,17 +6,24 @@
 # PLease read the GNU Affero General Public License in
 # <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
 
+"""
+✘ Commands Available -
+
+• `{i}pokemon <query>`
+    Send details of Pokemon.
+
+• `{i}pokecard <query>`
+    Send Card of Pokemon.
+"""
 
 from pokedex import pokedex as badhiya
 import os
 import shutil
 from re import findall
-from userbot.utils import admin_cmd
 import requests
-from userbot import CMD_HELP
 from . import *
 
-@ultroid_cmd(pattern="pokedex ?(.*)")
+@ultroid_cmd(pattern="pokemon ?(.*)")
 async def pokedex(event):
     pokemon = event.pattern_match.group(1)
     if not pokemon:
@@ -114,13 +121,4 @@ async def pokedex(event):
         await eor(event, "`Be sure To give correct Name`")
         return
 
-CMD_HELP.update(
-    {
-        "pokedex": "`Pokedex`\
-        \n`.pokedex [pokemon name]`\
-        \nsFetchs Pokemon details \
-        \n\n*`.pokecard [pokemon name]`\
-        \n**Send Pokemon Card \
-        "
-    }
-)
+HELP.update({f"{__name__.split('.')[1]}": f"{__doc__.format(i=Var.HNDLR)}"})
