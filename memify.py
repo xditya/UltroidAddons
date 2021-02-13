@@ -46,7 +46,7 @@ async def ultd(event):
         stderr.decode().strip()
         stdout.decode().strip()
     else:
-        xx = eor(event, "`Processing`")
+        xx = await eor(event, "`Processing`")
         img = cv2.VideoCapture(ultt)
         heh,lol = img.read()
         cv2.imwrite("ult.png",lol)
@@ -189,7 +189,7 @@ async def ultd(event):
         stderr.decode().strip()
         stdout.decode().strip()
     else:
-        xx = eor(event, "`Processing`")
+        xx = await eor(event, "`Processing`")
         img = cv2.VideoCapture(ultt)
         heh,lol = img.read()
         cv2.imwrite("ult.png",lol)
